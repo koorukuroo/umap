@@ -25,14 +25,14 @@ def nearest(database, name, location, maxkm):
     data = database.find(query)
     return data.count(), data
 
-def nearest(data, location, dist=10):
-    for d in data:
-        cand = vincenty(location, d['loc'])
-#         print dist, cand
-        if dist > cand:
-            dist = cand
-#             result = d
-    return dist
+# def nearest(data, location, dist=10):
+#     for d in data:
+#         cand = vincenty(location, d['loc'])
+# #         print dist, cand
+#         if dist > cand:
+#             dist = cand
+# #             result = d
+#     return dist
 
 
 
