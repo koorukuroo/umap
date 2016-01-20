@@ -14,6 +14,7 @@ config = {
     'version': '0.1',
     'install_requirements': ['folium', 'vincenty'],
     'scripts': [],
+    'py_modules': ['umap.get', 'umap.map'],
     'name': 'umap',
     'include_pakcage_data': True,
     'package_data': {'': ['assets/*.txt']}
