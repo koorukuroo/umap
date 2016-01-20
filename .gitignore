@@ -1,6 +1,10 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+<<<<<<< HEAD
+=======
+*$py.class
+>>>>>>> fdcb392f1c2bb14b09103f85dbfe728c01bd84d0
 
 # C extensions
 *.so
@@ -42,6 +46,10 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *,cover
+<<<<<<< HEAD
+=======
+.hypothesis/
+>>>>>>> fdcb392f1c2bb14b09103f85dbfe728c01bd84d0
 
 # Translations
 *.mo
