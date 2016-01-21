@@ -201,7 +201,7 @@ class Map():
         return self.circles
 
     # Color
-    def rgb_to_hex(rgb_tuple):
+    def rgb_to_hex(self, rgb_tuple):
         return matplotlib.colors.rgb2hex([1.0*x/255 for x in rgb_tuple])
 
     # def check_color_max(self, color_value):
