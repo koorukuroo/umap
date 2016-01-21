@@ -231,6 +231,6 @@ class Map():
         elif lcv == 3:
             color_value = [self.normalizer(cv) for cv in color_value]
             rgb = [255*color_value[0], 255*color_value[1], 255*color_value[2]]
-
+        print rgb
         hex = self.rgb_to_hex(rgb)
         return hex
