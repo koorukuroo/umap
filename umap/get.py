@@ -5,6 +5,8 @@ from bson.son import SON
 from IPython.display import HTML
 import folium
 
+import matplotlib.colors
+
 
 def distance(source, target):
     """
@@ -136,18 +138,34 @@ def embed_map(map, path="map.html"):
 
 
 class Map():
+    """
+    Map with folium
+    """
     def __init__(self):
+        """
+        lat, lon, zoom_start
+        """
         self.lat = 37.27
         self.lon = 127.01
         self.zoom_start = 7
         self.m = folium.Map(location=[self.lat, self.lon], zoom_start=self.zoom_start)
         self.circles = []
+        self.color_max = 1
+        self.color_min = 0
 
     def reset(self):
+        """
+        reset circles, map
+        :return:
+        """
         self.circles = []
         self.m = folium.Map(location=[self.lat, self.lon], zoom_start=self.zoom_start)
 
     def drawing(self):
+        """
+        Map drawing
+        :return: iframe map
+        """
         if len(self.circles)>0:
             for c in self.circles:
                 self.m.circle_marker(location=c[0], radius=c[1], fill_opacity=c[2],
@@ -176,5 +194,39 @@ class Map():
         self.circles.append([location[::-1], radius, fill_opacity, popup, fill_color, line_color])
 
     def get_circles(self):
+        """
+        Get a list of circles
+        :return: list
+        """
         return self.circles
-    
+
+    # Color
+    def rgb_to_hex(rgb_tuple):
+        return matplotlib.colors.rgb2hex([1.0*x/255 for x in rgb_tuple])
+
+    # def check_color_max(self, color_value):
+    #     if color_value/self.color_max > 1:
+    #         print 'Please set color_max ', self.color_max
+    def normalizer(self, color_value):
+        return (color_value-self.color_min)/self.color_max
+
+    def color(self, color_value):
+        color_value = self.normalizer(color_value)
+
+        if color_value/self.color_max > 1:
+            print 'Please set color_max ', self.color_max
+            return None
+
+        lcv = len(color_value)
+        if lcv == 1:
+            color_value = self.normalizer(color_value)
+            rgb = [0, 0, color_value]
+        elif lcv == 2:
+            color_value = [self.normalizer(cv) for cv in color_value]
+            rgb = [color_value[0], color_value[1], 0]
+        elif lcv == 3:
+            color_value = [self.normalizer(cv) for cv in color_value]
+            rgb = [color_value[0], color_value[1], color_value[2]]
+
+        hex = self.rgb_to_hex(rgb)
+        return hex
