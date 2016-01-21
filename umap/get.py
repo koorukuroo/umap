@@ -216,17 +216,19 @@ class Map():
         if color_value/self.color_max > 1:
             print 'Please set color_max ', self.color_max
             return None
-
-        lcv = len(color_value)
+        if type(color_value) != list:
+            lcv = 1
+        else:
+            lcv = len(color_value)
         if lcv == 1:
             color_value = self.normalizer(color_value)
-            rgb = [0, 0, int(255*color_value)]
+            rgb = [0, 0, 255*color_value]
         elif lcv == 2:
             color_value = [self.normalizer(cv) for cv in color_value]
-            rgb = [int(255*color_value[0]), int(255*color_value[1]), 0]
+            rgb = [255*color_value[0], 255*color_value[1], 0]
         elif lcv == 3:
             color_value = [self.normalizer(cv) for cv in color_value]
-            rgb = [int(255*color_value[0]), int(255*color_value[1]), int(255*color_value[2])]
+            rgb = [255*color_value[0], 255*color_value[1], 255*color_value[2]]
 
         hex = self.rgb_to_hex(rgb)
         return hex
