@@ -217,7 +217,7 @@ class Map():
         elif color_value < self.color_min:
             color_value = 0
         else:
-            color_value = (color_value-self.color_min)/self.color_max
+            color_value = (float(color_value)-self.color_min)/self.color_max
         return color_value
 
     def color(self, color_value):
