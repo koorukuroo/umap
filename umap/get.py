@@ -220,13 +220,13 @@ class Map():
         lcv = len(color_value)
         if lcv == 1:
             color_value = self.normalizer(color_value)
-            rgb = [0, 0, 255*color_value]
+            rgb = [0, 0, int(255*color_value)]
         elif lcv == 2:
             color_value = [self.normalizer(cv) for cv in color_value]
-            rgb = [255*color_value[0], 255*color_value[1], 0]
+            rgb = [int(255*color_value[0]), int(255*color_value[1]), 0]
         elif lcv == 3:
             color_value = [self.normalizer(cv) for cv in color_value]
-            rgb = [255*color_value[0], 255*color_value[1], 255*color_value[2]]
+            rgb = [int(255*color_value[0]), int(255*color_value[1]), int(255*color_value[2])]
 
         hex = self.rgb_to_hex(rgb)
         return hex
