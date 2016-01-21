@@ -191,6 +191,10 @@ class Map():
         """
         if type(popup) == unicode:
             popup = popup.encode('utf8')
+        elif type(popup) == int:
+            popup = str(popup)
+        elif type(popup) == float:
+            popup = str(popup)
         self.circles.append([location[::-1], radius, fill_opacity, popup, fill_color, line_color])
 
     def get_circles(self):
