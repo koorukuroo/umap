@@ -212,7 +212,13 @@ class Map():
     #     if color_value/self.color_max > 1:
     #         print 'Please set color_max ', self.color_max
     def normalizer(self, color_value):
-        return (color_value-self.color_min)/self.color_max
+        if color_value > self.color_max:
+            color_value = 1
+        elif color_value < self.color_min:
+            color_value = 0
+        else:
+            color_value = (color_value-self.color_min)/self.color_max
+        return color_value
 
     def color(self, color_value):
         # if color_value/self.color_max > 1:
